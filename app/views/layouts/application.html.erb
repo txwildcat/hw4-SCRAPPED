@@ -12,7 +12,7 @@
   <body>
     <p>
       <% if @current_user %>
-        You are logged in, <%= @current_user.first_name %>
+        You are logged in, <%= @current_user.username %>
         <%= button_to "Logout", "/sessions/logout", method: :delete %>
       <% else %>
         <a href="/">Home</a>
