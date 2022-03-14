@@ -3,10 +3,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by({ email: params["email"] })
+    @user = User.find_by({ email: params["email"] }) #do i need the [0]?
     if @user
       if BCrypt::Password.new(@user.password) == params["password"]
-        session[:user_id] = @user.id
+        session["user_id"] = @user.id
         flash[:notice] = "Welcome, #{@user.username}."
         redirect_to "/places"
       else
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    session["user_id"] = nil
     flash[:notice] = "You have logged out"
     redirect_to "/sessions/new"
   end
